@@ -1,6 +1,5 @@
 package com.biblioteca.presentation.controller;
 
-import com.biblioteca.application.dto.BookRequestDTO;
 import com.biblioteca.application.dto.BookResponseDTO;
 import com.biblioteca.application.dto.LoanRequestDTO;
 import com.biblioteca.application.dto.LoanResponseDTO;
@@ -56,7 +55,7 @@ public class LibraryController {
     }
 
     @PostMapping("/return")
-    public ResponseEntity<LoanResponseDTO> returnBook(@RequestBody BookRequestDTO request) {
+    public ResponseEntity<LoanResponseDTO> returnBook(@RequestBody LoanRequestDTO request) {
         logger.info("POST /api/books/return - Request: {}", request);
         
         try {

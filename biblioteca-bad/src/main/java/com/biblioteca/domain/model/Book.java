@@ -5,61 +5,44 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
- * Entidad Book con validaciones excesivas y campos innecesarios
+ * Entidad Book con campos innecesarios - MALA PRÁCTICA
+ * Solo necesitamos: id, title, author
+ * Pero agregamos campos "por si acaso"
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Book {
+    // Campos necesarios
     private String id;
     private String title;
     private String author;
-    private String isbn; // Nadie lo pidió
-    private LocalDateTime createdAt; // Nadie lo pidió
-    private LocalDateTime updatedAt; // Nadie lo pidió
-    private BookStatus status; // Complicación innecesaria
-    private String category; // Nadie lo pidió
-    private Integer totalCopies; // Nadie lo pidió
-    private Integer availableCopies; // Nadie lo pidió
+    
+    // Campos innecesarios - nadie los pidió
+    private String isbn; // ❌ Nadie lo pidió
+    private LocalDateTime createdAt; // ❌ Nadie lo pidió
+    private BookStatus status; // ❌ Complicación innecesaria
 
-    // Constructor "útil" que tampoco se usa
+    // Constructor simple
     public Book(String id, String title, String author) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
         this.status = BookStatus.AVAILABLE;
-        this.totalCopies = 1;
-        this.availableCopies = 1;
-    }
-
-    // Validación compleja que nadie pidió
-    public boolean isValid() {
-        return Objects.nonNull(id) && 
-               !id.isEmpty() && 
-               Objects.nonNull(title) && 
-               !title.isEmpty() &&
-               Objects.nonNull(author) && 
-               !author.isEmpty() &&
-               title.length() >= 3 &&
-               author.length() >= 3;
     }
 
     // Método que nunca se usa
     public void updateTimestamp() {
-        this.updatedAt = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
     }
 
-    // Enum innecesario
+    // Enum innecesario - solo usamos AVAILABLE
     public enum BookStatus {
         AVAILABLE,
         BORROWED,
-        RESERVED,
-        MAINTENANCE,
-        LOST
+        RESERVED
     }
 }

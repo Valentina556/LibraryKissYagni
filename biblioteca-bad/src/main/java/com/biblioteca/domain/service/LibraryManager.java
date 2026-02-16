@@ -1,7 +1,6 @@
 package com.biblioteca.domain.service;
 
 import com.biblioteca.domain.model.Book;
-import com.biblioteca.domain.model.Loan;
 import com.biblioteca.domain.model.User;
 import com.biblioteca.domain.policy.FinePolicy;
 import com.biblioteca.domain.policy.LoanPolicy;
@@ -9,16 +8,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Implementación concreta con lógica mezclada con herencia innecesaria
+ * MALA PRÁCTICA: Extiende AbstractLibraryManager sin necesidad
  */
 @Service
 public class LibraryManager extends AbstractLibraryManager {
     
     private Map<String, Book> books = new HashMap<>();
-    private Map<String, Loan> loans = new HashMap<>(); // bookId -> Loan
+    private Map<String, String> loans = new HashMap<>(); // bookId -> userId
 
     public LibraryManager(LoanPolicy loanPolicy, 
                          FinePolicy finePolicy,
@@ -40,8 +39,7 @@ public class LibraryManager extends AbstractLibraryManager {
         logger.debug("Procesando préstamo - Libro: {}, Usuario: {}", book.getId(), user.getId());
         
         if (validateLoan(book, user)) {
-            Loan loan = new Loan(UUID.randomUUID().toString(), book.getId(), user.getId());
-            loans.put(book.getId(), loan);
+            loans.put(book.getId(), user.getId());
             
             // notificationService nunca se llama realmente
             logOperation("LOAN", "Libro " + book.getId() + " prestado a " + user.getId());
@@ -77,10 +75,9 @@ public class LibraryManager extends AbstractLibraryManager {
             return false;
         }
 
-        Loan loan = loans.remove(bookId);
-        loan.setStatus(Loan.LoanStatus.RETURNED);
+        loans.remove(bookId);
         
-        // Cálculo de multa que nunca se usa
+        // Cálculo de multa que nunca se usa - MALA PRÁCTICA
         double fine = finePolicy.calculateFine(0);
         
         logger.info("Libro {} devuelto exitosamente. Multa: {}", bookId, fine);
@@ -98,12 +95,8 @@ public class LibraryManager extends AbstractLibraryManager {
         return available;
     }
 
-    // Métodos adicionales que nadie usa
+    // Método adicional que nadie usa - MALA PRÁCTICA
     public Map<String, Book> getAllBooks() {
         return new HashMap<>(books);
-    }
-
-    public Map<String, Loan> getAllLoans() {
-        return new HashMap<>(loans);
     }
 }

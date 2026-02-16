@@ -17,10 +17,9 @@ Este proyecto es un **ejemplo de MALAS PRÁCTICAS** con fines educativos. Muestr
 - Código muerto que aumenta complejidad
 
 ### 3. Entidades Sobrecargadas
-- **Book**: 10 campos cuando solo necesitamos 3
-- **User**: 8 campos cuando solo necesitamos 2
-- **Loan**: Entidad completa cuando un Map es suficiente
-- Validaciones complejas innecesarias
+- **Book**: 6 campos cuando solo necesitamos 3 (id, title, author)
+- **User**: 4 campos cuando solo necesitamos 2 (id, name)
+- Campos "por si acaso": isbn, createdAt, status, email, userType
 
 ### 4. Capas Innecesarias
 ```
@@ -31,30 +30,21 @@ domain/
 application/
 ├── dto/
 └── mapper/
-infrastructure/
-├── factory/
-└── repository/
 presentation/
 └── controller/
 ```
 
-### 5. DTOs para Todo
-- BookRequestDTO, BookResponseDTO
-- LoanRequestDTO, LoanResponseDTO
+3 capas cuando solo necesitamos 2
+
+### 5. DTOs Innecesarios
+- BookResponseDTO, LoanRequestDTO, LoanResponseDTO
 - Conversiones triviales que no agregan valor
+- BookMapper para conversiones simples
 
-### 6. Factories Innecesarios
-- BookFactory, UserFactory
-- Para crear objetos simples que no lo necesitan
-
-### 7. Repository Genérico
-- Interface GenericRepository con métodos que nunca se usan
-- Métodos findByAuthor, findByTitle sin uso real
-
-### 8. Logging Excesivo
+### 6. Logging Excesivo
 - Logger en cada clase
 - Logs en cada método
-- Información redundante
+- Información redundante que dificulta el debugging
 
 ## Estructura del Proyecto
 
@@ -63,36 +53,27 @@ src/main/java/com/biblioteca/
 ├── BibliotecaBadApplication.java
 ├── domain/
 │   ├── model/
-│   │   ├── Book.java (sobrecargado)
-│   │   ├── User.java (sobrecargado)
-│   │   └── Loan.java (innecesario)
+│   │   ├── Book.java (con campos innecesarios)
+│   │   └── User.java (con campos innecesarios)
 │   ├── policy/
-│   │   ├── LoanPolicy.java
-│   │   ├── DefaultLoanPolicy.java
-│   │   ├── FinePolicy.java
-│   │   └── NoFinePolicy.java
+│   │   ├── LoanPolicy.java (interface)
+│   │   ├── DefaultLoanPolicy.java (siempre retorna true)
+│   │   ├── FinePolicy.java (interface)
+│   │   └── NoFinePolicy.java (siempre retorna 0)
 │   └── service/
-│       ├── NotificationService.java (no usado)
-│       ├── AbstractLibraryManager.java
+│       ├── NotificationService.java (nunca usado)
+│       ├── AbstractLibraryManager.java (jerarquía innecesaria)
 │       └── LibraryManager.java
 ├── application/
 │   ├── dto/
-│   │   ├── BookRequestDTO.java
 │   │   ├── BookResponseDTO.java
 │   │   ├── LoanRequestDTO.java
 │   │   └── LoanResponseDTO.java
 │   └── mapper/
-│       └── BookMapper.java
-├── infrastructure/
-│   ├── factory/
-│   │   ├── BookFactory.java
-│   │   └── UserFactory.java
-│   └── repository/
-│       ├── GenericRepository.java
-│       └── InMemoryBookRepository.java
+│       └── BookMapper.java (conversiones triviales)
 └── presentation/
     └── controller/
-        └── LibraryController.java
+        └── LibraryController.java (REST API con DTOs)
 ```
 
 ## Cómo Ejecutar
