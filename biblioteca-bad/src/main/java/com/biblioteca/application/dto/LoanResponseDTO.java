@@ -4,9 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * Más DTOs que complican todo
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

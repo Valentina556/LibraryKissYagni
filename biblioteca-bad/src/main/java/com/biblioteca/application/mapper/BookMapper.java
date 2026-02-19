@@ -4,9 +4,6 @@ import com.biblioteca.application.dto.BookResponseDTO;
 import com.biblioteca.domain.model.Book;
 import org.springframework.stereotype.Component;
 
-/**
- * Mapper para conversiones triviales que no agregan valor
- */
 @Component
 public class BookMapper {
     

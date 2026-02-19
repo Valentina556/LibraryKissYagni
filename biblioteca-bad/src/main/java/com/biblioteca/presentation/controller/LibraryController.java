@@ -12,9 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * Controller con DTOs innecesarios y logging excesivo
- */
 @RestController
 @RequestMapping("/api/books")
 public class LibraryController {

@@ -27,7 +27,6 @@ public abstract class AbstractLibraryManager {
         logger.info("Inicializando AbstractLibraryManager con políticas");
     }
 
-    // Método abstracto que fuerza implementación innecesaria
     abstract void processLoan(Book book, User user);
 
     // Método que nunca se usa
@@ -35,7 +34,6 @@ public abstract class AbstractLibraryManager {
         logger.debug("Operación: {} - Detalles: {}", operation, details);
     }
 
-    // Template method que nadie pidió
     protected boolean validateLoan(Book book, User user) {
         logger.debug("Validando préstamo para libro {} y usuario {}", book.getId(), user.getId());
         return loanPolicy.canLoan(book, user);

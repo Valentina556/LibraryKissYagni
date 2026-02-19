@@ -9,15 +9,11 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Implementación concreta con lógica mezclada con herencia innecesaria
- * MALA PRÁCTICA: Extiende AbstractLibraryManager sin necesidad
- */
 @Service
 public class LibraryManager extends AbstractLibraryManager {
     
     private Map<String, Book> books = new HashMap<>();
-    private Map<String, String> loans = new HashMap<>(); // bookId -> userId
+    private Map<String, String> loans = new HashMap<>();
 
     public LibraryManager(LoanPolicy loanPolicy, 
                          FinePolicy finePolicy,
@@ -77,7 +73,6 @@ public class LibraryManager extends AbstractLibraryManager {
 
         loans.remove(bookId);
         
-        // Cálculo de multa que nunca se usa - MALA PRÁCTICA
         double fine = finePolicy.calculateFine(0);
         
         logger.info("Libro {} devuelto exitosamente. Multa: {}", bookId, fine);
@@ -95,7 +90,6 @@ public class LibraryManager extends AbstractLibraryManager {
         return available;
     }
 
-    // Método adicional que nadie usa - MALA PRÁCTICA
     public Map<String, Book> getAllBooks() {
         return new HashMap<>(books);
     }

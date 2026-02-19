@@ -4,11 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * Entidad User con campos innecesarios - MALA PRÁCTICA
- * Solo necesitamos: id, name
- * Pero agregamos campos "por si acaso"
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,10 +11,8 @@ public class User {
     // Campos necesarios
     private String id;
     private String name;
-    
-    // Campos innecesarios - nadie los pidió
-    private String email; // ❌ Nadie lo pidió
-    private UserType userType; // ❌ Complicación innecesaria
+    private String email;
+    private UserType userType;
 
     public User(String id, String name) {
         this.id = id;
@@ -27,7 +20,6 @@ public class User {
         this.userType = UserType.REGULAR;
     }
 
-    // Método que nunca se usa
     public boolean canBorrow() {
         return userType != UserType.SUSPENDED;
     }

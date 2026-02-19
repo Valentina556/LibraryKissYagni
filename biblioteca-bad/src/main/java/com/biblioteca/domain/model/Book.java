@@ -6,11 +6,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-/**
- * Entidad Book con campos innecesarios - MALA PRÁCTICA
- * Solo necesitamos: id, title, author
- * Pero agregamos campos "por si acaso"
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,11 +14,9 @@ public class Book {
     private String id;
     private String title;
     private String author;
-    
-    // Campos innecesarios - nadie los pidió
-    private String isbn; // ❌ Nadie lo pidió
-    private LocalDateTime createdAt; // ❌ Nadie lo pidió
-    private BookStatus status; // ❌ Complicación innecesaria
+    private String isbn;
+    private LocalDateTime createdAt;
+    private BookStatus status;
 
     // Constructor simple
     public Book(String id, String title, String author) {
