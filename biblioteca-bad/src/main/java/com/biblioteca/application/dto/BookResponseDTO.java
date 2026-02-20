@@ -4,9 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * DTO innecesario para responses simples
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

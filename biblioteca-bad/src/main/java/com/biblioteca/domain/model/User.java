@@ -24,7 +24,7 @@ public class User {
         return userType != UserType.SUSPENDED;
     }
 
-    // Enum innecesario - solo usamos REGULAR
+    // Enum innecesario - solo se usa REGULAR
     public enum UserType {
         REGULAR,
         PREMIUM,

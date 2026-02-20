@@ -7,9 +7,8 @@ import com.biblioteca.domain.policy.LoanPolicy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Jerarquía innecesaria - clase abstracta que solo tiene una implementación
- */
+// Jerarquía innecesaria - clase abstracta que solo tiene una implementación
+
 public abstract class AbstractLibraryManager {
     
     protected static final Logger logger = LoggerFactory.getLogger(AbstractLibraryManager.class);

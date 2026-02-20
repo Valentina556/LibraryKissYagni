@@ -5,9 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-/**
- * Servicio que nunca se usa 
- */
+// Servicio que nunca se usa 
+
 @Service
 public class NotificationService {
     

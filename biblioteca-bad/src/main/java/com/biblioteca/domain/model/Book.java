@@ -32,7 +32,7 @@ public class Book {
         this.createdAt = LocalDateTime.now();
     }
 
-    // Enum innecesario - solo usamos AVAILABLE
+    // Enum innecesario - solo se usa AVAILABLE
     public enum BookStatus {
         AVAILABLE,
         BORROWED,
