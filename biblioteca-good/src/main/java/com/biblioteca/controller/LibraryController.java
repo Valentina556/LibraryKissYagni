@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-/**
- * Controller simple - sin DTOs innecesarios
- */
 @RestController
 @RequestMapping("/api/books")
 public class LibraryController {

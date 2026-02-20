@@ -6,9 +6,6 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Servicio simple - toda la lógica aquí, sin capas innecesarias
- */
 @Service
 public class LibraryService {
     

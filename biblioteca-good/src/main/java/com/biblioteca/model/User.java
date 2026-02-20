@@ -1,8 +1,5 @@
 package com.biblioteca.model;
 
-/**
- * POJO simple - solo lo necesario
- */
 public class User {
     private String id;
     private String name;
