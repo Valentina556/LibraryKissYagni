@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 import java.util.HashMap;
  
-@Service("challengeLibraryManager")
+@Service("challengeLibraryManager") 
 public class LibraryManager {
  
     private final Map<String, String> books = new HashMap<>();
@@ -22,6 +22,7 @@ public class LibraryManager {
     public Map<String, String> getBooks() {
         return new HashMap<>(books);
     }
+    
 }
  
  
