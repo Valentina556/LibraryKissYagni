@@ -177,13 +177,3 @@ Se agregan características anticipando necesidades futuras:
 - Respeta la arquitectura en capas sin sobre-complicarla
 
 ---
-
-### 3. Inyección de Dependencias
-
-**Decisión:** Usar Spring para inyección de dependencias.
-
-**Justificación:**
-- Reduce acoplamiento entre componentes
-- Facilita testing mediante mocks
-- Es un patrón ampliamente aceptado en la comunidad Java
-- Permite cambiar implementaciones sin modificar clientes
